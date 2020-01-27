@@ -1,0 +1,17 @@
+we would add the following to the project's urls.py
+
+from django.conf.urls import include
+urlpatterns = [
+	url(r'^home/',include('FirstP.urls')),	//mane website er domain er por /home likhle FirstProject folder er
+						//urls.py folder theke content eshe show korbe
+	]
+
+create a file named urls.py in the FirstProject app and if we write the code
+	from FirstP import views		
+	from django.conf.urls import url
+	from django.conf.urls import include
+	urlpatterns = [
+		url(r'^$',views.index,name='index'),
+	]
+
+Then it'll print Hello boys
