@@ -1,0 +1,53 @@
+The template will contain the static parts of an html page(parts that are always the same)
+
+Template tags - which have their own special syntax, allows you to inject dynamic content that
+		your django app's views will produce, effecting the final HTML
+
+To get started with templates, you first need to create a templates directory and then a sub-
+directory for each specific app's template. FirstP/templates/comments
+
+
+Templates directory create korar por ta project er sathe connect korar jnno project er
+settings.py file er TEMPLATES variable e rakhte hobe, kintu tar age templates er path ta
+dynamic korar jnno, mane project ta onno pc ba os e nile path ta jate dynamically set hoy
+tar jnno akta kaj korte hobe-
+
+	We can use python's os module to dynamically generate the correct file path strings,
+	regardless of computer
+
+Suppose we're working on settings.py file and the project is on our desktop.
+if we write:-
+	print(__file__)
+	>>settings.py
+
+	print(os.path.abspath(__file__)
+	>>c:\Users\mdimt\Desktop\Django\FirstProject\FirstProject\settings.py
+
+	print(BASE_DIR)
+	>>c:\Users\mdimt\Desktop\Django\FirstProject
+
+	print(os.path.join(BASE_DIR,"emplates"))
+	>>concats c:\Users\mdimt\Desktop\Django\FirstProject + templates
+
+So we have to tell our settings file the templates folder location.
+In settings file:
+	TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
+	TEMPLATES = [{ =
+			'DIRS' : [TEMPLATE_DIR,],
+	}]
+
+Create a file index.html in FirstProject/templates/helloworld directory
+	html
+		<h1> I'm from index.html </h1>
+		{{ insert_me }}
+	html
+
+In views.py:
+	def index(request):
+		my_dict = {'insert_me' : "Hello I am from views.py!"}
+		return render(request,'(template diretory'r file)helloworld/index.html',context = my_dict)
+
+Output:
+	I'm from index.html
+	Hello I am from views.py
+	
