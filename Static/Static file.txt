@@ -1,0 +1,19 @@
+Website er fixed content gula ai folder e thakbe jemon images, css, javascript etc
+
+
+Linking up the static folder with the project:
+settings.py->
+	STATIC_DIR = os.path.join(BASE_DIR,"static")
+	# Static files
+	STATICFILES_DIRS = [		//jodi amra chai static folder er vitore onk gula folder e
+		STATIC_DIR,		//image thakbe tokhn shb gula directory aikhane likhte hobe
+	]				//othoba jodi amra chai kono static folder client site theke
+					access kora jabe na tokhn oi path ta likhbo na
+
+Template's index.html file-
+	<!DOCTYPE html>
+	{% load static %}
+	...
+	<link rel="stylesheet" href="{% static "css/style.css" %}" >
+	...
+	<img src="{% static "images/mypic.jpg %}" alt="my images" >
