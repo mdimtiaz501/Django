@@ -1,0 +1,11 @@
+h1{
+    color: White;
+    background-color: #0984e3;
+    padding: 10px 0px 10px 10px;
+}
+img{
+    height:400px;
+    width: 600px;
+    display: table;
+    margin-bottom: 20px;
+}

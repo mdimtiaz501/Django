@@ -1,0 +1,31 @@
+Models are just classes. Models file e class akare model gula thake
+It contains the essential fields and behaviors of the data you're storing.
+Each attribute of the class represents a database field which is just like a column name
+
+Creating models:
+-----------------
+create classes and fields.
+
+Note: name = models.ForeignKey('Webpage', on_delete=models.PROTECT)
+def __str__(self):
+     return self.name        #eta return hoye ForeignKey te boshe jabe
+
+command shell:
+-----------------
+python manage.py migrate
+python manage.py makemigrations Hello 	//models are created
+python manage.py migrate
+python manage.py shell
+from Hello.models import Subject
+print(Topic.objects.all()) => <QuerySet []>
+a = Subject(top_name="Graphics design")
+a.save()
+print(Topic.objects.all()) => <QuerySet [<Subject: Graphics design>]>
+
+
+Creating Admin Interface
+--------------------------
+python manage.py createsuperuser
+<give username, email and password>
+python manage.py runserver
+http://127.0.0.1:8000/admin/		//now after logging in we can use our database
