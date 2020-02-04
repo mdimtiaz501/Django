@@ -1,0 +1,9 @@
+Database e dummy content upload:-
+=================================
+
+pip install Faker
+
+create a file and write the codes
+
+python filename.py
+python manage.py runserver
