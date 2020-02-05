@@ -1,0 +1,14 @@
+Models-Templates-Views Paradigm - database er sathe front end er connection
+
+First - in the views.py fie we import any models that we will need to use
+Second - Use the view to query the model for data that we will need
+Third - Pass results from the model to thet template 
+Fourth - edit the template so that it is ready to accept and display the data from the model.
+Fifth - Map a url to the view.
+
+views.py ->
+	from FirstP.models import Subject,Webpage,AccessRecord
+	edit def index method
+
+templates > Hello > index.html
+	write the codes for fetching the data from database
