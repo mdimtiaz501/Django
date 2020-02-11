@@ -1,0 +1,7 @@
+Create a ModelForm in forms.py
+Connect the form in the template
+Edit views.py to show the form
+Figure out how to .save() the data
+Verify the model is admin registered
+
+If the project name is edited, delete the database file and then remigrate.
