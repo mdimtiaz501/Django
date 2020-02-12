@@ -1,0 +1,19 @@
+__init__ - this is a blank python script that due to its special name let's python know that
+	this directory can be treated as a directory
+admin    - this is where you can register your models so that you can benefit from some general
+	machinery that basically creates an adamant interface for you
+apps     - provides a place for any application specific configuration 
+models   - a place to store your applications data models where we specify the entities and
+	relationships between the data. form er field, form gular moddhe relation er code thakbe
+text	 - this is where you can store a series of functions to test out your applications code
+Views	 - where you can store a series of functions that handle requests and return responses.
+	   ak akta function ak akta page er view return korbe.
+
+Migration directory - this directory stores database specific information as it relates to the models
+
+
+
+
+
+
+
