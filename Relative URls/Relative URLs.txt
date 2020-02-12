@@ -1,0 +1,28 @@
+ProjectFile urls.py ->
+
+	urlpatterns = [
+		url(r'^$',views.index,name='index'),	//^$ diye bujhay domain page er link 
+		url(r'^admin/',admin.site.urls),	//r= regular expression. ^ mane anything before admin, admin/ porer page gula oi location theke ashbe
+		url(r'^Hello/',include('Hello.urls'))	//Hello/ link er porer part Hello app er urls file theke nibe
+	]
+
+Hello urls.py ->
+	from django.conf.urls import url
+	from Hello import views
+	app_name = 'Hello'
+
+	urlpatterns = [
+		url(r'^other/$',views.other,name='other1'),	//link ta hobe domain/Hello/other
+		url(r'^another/$',views.another,name='another1')	//name ta anchor tag e dite hobe
+	]
+
+templates Hello other.html ->
+	<a href="{% url 'Hello:other1' %}"> Other page </a>	   //Hello ta app_name theke ashse
+	<a href="{% url 'admin:index' %}"> Admin Login page </a>   //by default	
+	<a href="{% url 'index' %}"> Homepage </a>		   //by default
+
+Note: 'index' er jaygai ' index' or 'index ' likhle error show korbe.
+
+To access admin panel:
+python manage.py migrate
+python manage.py createsuperuser
