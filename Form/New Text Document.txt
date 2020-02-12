@@ -1,0 +1,73 @@
+Form Basics code along:
+======================
+
+create a file named forms.py in the application folder (onno nam dile hobe na)
+
+forms.py ->
+	from django import forms
+	class name(forms.Form):
+		form fields name
+
+
+views.py file e akti function niye kono page e kisu show korate chaile tar code likhbo.
+
+views.py file e form er code gula likhbo
+
+urls.py ->
+	from Application import views
+	url(r'^form/',views.simple_form,name='form')
+
+templates directory te application er jnno separate directory create kore form template
+er jnno file create kore sekhane form tag er vitor ai code likhbo
+	    {{form.as_p}}
+            {% csrf_token %}
+
+
+Form Validation:
+================
+form kono bot submit korse kina ta check korbo. bot html code edit kore form submit kore.
+frontend er design she bujhena. tai html edit hoise kina ta check korbo
+
+forms.py ->
+	botcatcher = forms.CharField(required=False, widget=forms.HiddenInput)
+	(required false mane ai field blank thakleo hobe, HiddenInput mane frontend e
+	ai field show korbena kintu backend e thakbe. bot jokhn html code e form fillup
+	korbe tokhn ai field o auto fillup korbe. tai amra condition dibo j ai field
+	fullup hole form submit hobe na.)
+
+	def clean_botcatcher(self):
+        	botcatcher = self.cleaned_data['botcatcher']
+        	if len(botcatcher) > 0:
+           	    raise forms.ValidationError("You're a bot!")
+        	return botcatcher
+	(jodi bot field ta fillup kore tokhn akta error generate hobe)
+
+Using django built in validator:
+================================
+forms.py ->
+	from django.core import validators
+	botcatcher = forms.CharField(required=False, widget=forms.HiddenInput,
+	validators=[validators.MaxLengthValidator(0)])
+
+Creating custom validator ->
+=============================
+assume that our first name must start with letter z.
+
+def check_z(value): 
+	if value[0].lower() != 'z':
+		raise forms.ValidationError("Write z as first letter")
+class
+	FirstName = forms.CharField(validators=[check_z])
+
+Confirm email ->
+=========================
+forms.py ->
+class
+    Email = forms.EmailField()
+    Confirm_email = forms.EmailField(label="Enter email again.")
+    def clean(self):
+        all_clean_data = super().clean()
+        email = all_clean_data['Email']
+        confirm_email = all_clean_data['Confirm_email']
+        if email != confirm_email:
+            raise forms.ValidationError("Confirm Please!")
