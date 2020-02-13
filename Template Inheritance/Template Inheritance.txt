@@ -1,0 +1,20 @@
+kono file er akta part jodi onno kono file e common rakhte chai tokhn Template Inheritance use korte hobe.
+For example header or footer part.
+
+Index.html ->
+	code
+	{% block body_block %}
+
+	{% endblock %}
+	code
+
+Index file k jokhn kono file inherit korbe tokhn body block chhara baki part inherit hobe.
+
+Blog.html ->
+	<!DOCTYPE html>
+	{% extends "Application/Index.html" %}
+	{% block body_block %}
+	code
+	{% endblock %}
+
+Index page e block er nam body_block tai Blog page eo block er nam same rakhte hobe
