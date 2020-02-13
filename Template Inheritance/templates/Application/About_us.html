@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<h5>This text is from About Us page above doctype</h5>
+    {% extends "Application/Home.html" %}
+        {% block body_block %}
+
+        <h1>Hi I'm Imtiaz</h1>
+        <h2>I study in Comilla University</h2>
+        <a href="{% url 'Application:home' %}">Home</a>
+
+        {% endblock %}
+
+        <h5>This text is from About Us page under endblock</h5>
