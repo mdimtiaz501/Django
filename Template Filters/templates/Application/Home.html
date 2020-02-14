@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+    {% extends "Application/index.html" %}
+
+        {% block body_block %}
+    
+        <h1>Relative URLs coding practice</h1>
+        <a href="{% url 'index' %}">Main Page</a>
+        <a href="{% url 'admin:index' %}">Admin Panel</a>
+
+        {% endblock %}
+
+    <h2>This text is from home page under endblock</h2>
