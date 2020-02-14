@@ -1,0 +1,36 @@
+jodi amra kono template inherit korar por template ta modify korte chai, for example
+jei template ta inherit korechi ta sob word capitalize hobe, tokhn template filter use korbo
+
+views.py -> 
+def index(request):
+    dict = {'key':'value hello world','key2':33}
+    return render(request,'Application/index.html',context=dict)
+
+index.html ->
+    {{ key|upper }}		//pre defined filter
+    {{ key2|add:"32" }}
+
+Create custom filters:-
+------------------------
+create a folder named templatetags in the application directory.
+create a file named __init__.py in that directory and keep it blank.
+So python treats it as a module. Create another file with any name
+
+file.py ->
+	from django import template
+	register = template.Library()
+
+	def delete(value,arg):
+   	    return value.replace(arg,'')
+
+	register.filter('cutting',delete)
+
+filter register korar arekti way ache ->
+	@register.filter(name="deleting")	//name na likhle function er nam nibe
+	def delete(value,arg):
+   	    return value.replace(arg,'')
+
+j file e filter user korbo oi file e filer er nam load kore use filter use korte hobe
+index.html ->
+	{% load file %}
+	{{ key|deleting:'key' }}
