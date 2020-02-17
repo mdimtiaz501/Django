@@ -1,0 +1,30 @@
+form theke information database e save korbo
+
+Instead of inheriting from the forms.Forms class, we will use forms.ModelForm
+in our forms.py file. This helper class allows us to create a form from a 
+pre-existing model.
+Then we'll add an inline class Meta that provides information connecting the
+model to the form.
+
+forms.py ->
+	from django import forms
+	from .models import User
+
+	class NewUserForm(forms.ModelForm):
+	    #Form field go here		//security reason er jnno kono field use kora hoy na
+					//custom validation er jnno
+   	    class Meta:
+        	model = User
+       		fields = '__all__'	//fields attribute connect to model
+					//__all__ grabs all the fields form
+					//models.py file
+	2nd option:
+	    class Meta:
+        	model = User
+       		exclude = ['field1','field2']
+
+	3rd option:
+	    class Meta:
+        	model = User		//model file er User class er sathe connect kore
+					//oi class er field gula grab korar jnno
+       		fields = ('field1','field2')
