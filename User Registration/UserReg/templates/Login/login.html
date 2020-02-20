@@ -1,0 +1,17 @@
+{% extends 'Login/base.html' %}
+{% block body %}
+
+<div class="jumbtron">
+    <h1>Login first!</h1>
+    <form action="{% url 'Login:user_login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Username">
+        <input type="text" name="pass" placeholder="Password">
+        <input type="Submit" value="Submit" class="btn btn-primary">
+    </form>
+
+
+</div>
+
+{% endblock %}
+

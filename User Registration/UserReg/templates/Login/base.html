@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "Login/css/style.css" %}">
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}" class="navbar-brand">Home</a></li>
+                <li><a href="{% url 'admin:index' %}" class="navbar-link">Admin</a></li>
+                <li><a href="{% url 'Login:register' %}" class="navbar-link">Registration</a></li>
+                    <!-- models.py er user jodi authenticated hoy-->
+                {% if user.is_authenticated %}
+                    <!-- project er urls.py file theke logout namer link nibe-->
+                    <li><a href="{% url 'logout' %}" class="navbar-link">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'Login:user_login' %}" class="navbar-link">Login</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block body %}
+            <div class="container">
+                
+            </div>
+
+        {% endblock %}
+    </div>
+</body>
+</html>

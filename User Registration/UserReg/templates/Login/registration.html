@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "Login/base.html" %}
+{% block body %}
+
+<div class="container">
+    <div class="jumbotron">
+        {% if reg %}
+            <h2>Thank you for registration.</h2>
+
+        {% else %}
+            <h3>Register First!</h3>
+
+            <form enctype="multipart/form-data" method="POST">  <!-- image uploading kaj koranor jnno enctype -->
+                {% csrf_token %}
+                {{ uf.as_p }}
+                {{ ui.as_p }}
+                <input type="submit" value="Register">
+            </form>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

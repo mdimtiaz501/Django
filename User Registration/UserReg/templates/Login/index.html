@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends "Login/base.html" %}
+{% block body %}
+
+    <div class="jumbotron">
+        <div class="container">
+            {% if user.is_authenticated %}
+                <h3>Welcome {{ user.username }} </h3>
+            {% else %}
+                <h1>User Login And Registration</h1>
+                <h3>Welcome to our django project!</h3>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
