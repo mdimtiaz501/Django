@@ -1,0 +1,65 @@
+User Login steps ->
+    Adding the LOGIN_URL in settings
+    Setting up the login views
+    Using built-in decorators for access
+    Creating the login.html
+    Editing the urls.py files
+
+
+settings.py ->
+	LOGIN_URL = '/Login/login'
+
+
+views.py ->
+    from django.urls import reverse
+    from django.contrib.auth.decorators import login_required
+    from django.http import HttpResponseRedirect,HttpResponse
+    from django.contrib.auth import authenticate,login,logout
+
+    //jeshb file import korbo same namer function create kora jabena
+
+    def loginviews(request):
+        if request.method == "POST":
+            username = request.POST.get('name')	//login.html er form theke username and pass nibe
+            password = request.POST.get('pass')
+        					//username & password match korabo authenticator use kore
+            users = authenticate(username=username,password=password)
+
+            if users:
+                if users.is_active:
+                    login(request,users) 		//jodi kono user thake r account active thake
+                    return HttpResponseRedirect(reverse('index'))
+
+                else:
+                    return HttpResponse("Account Not Active!")
+
+            else:
+                print("Failed Login.")
+                print("Username: {} and Password: {} ".format(username,password))
+                return HttpResponse("Invalid Login")
+
+        else:
+            return render(request,'Login/login.html')
+
+
+    @login_required				//jodi user logged in obsthay thake tokhn e eta kaj korbe
+    def user_logout(request):
+        logout(request)			//jodi logout er jnno click kore ba request kore
+        return HttpResponseRedirect(reverse('index'))	//user logout hole homepage e redirect hobe
+
+
+login.html ->
+	{% extends 'Login/base.html' %}
+	{% block body %}
+	<div class="jumbtron">
+    	    <h1>Login first!</h1>
+    	    <form action="{% url 'Login:user_login' %}" method="POST">		//Login app er urls.py file er user_login namer url link nibe
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Username">
+                <input type="text" name="pass" placeholder="Password">
+                <input type="Submit" value="Submit" class="btn btn-primary">
+            </form>
+	</div>
+	{% endblock %}
+
+

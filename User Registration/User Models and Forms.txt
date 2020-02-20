@@ -1,0 +1,17 @@
+models.py ->
+	from django.contrib.auth.models import User	//importing basic user model
+
+	class UserInfo(models.Model):
+  	    user = models.OneToOneField(User,on_delete=models.CASCADE)		UserInfo is a model class. Default User er moddhe jeshb
+										default attribute gula ache such as username, email, password, firstname, lastname
+										egula onetoone relation er maddhome import hobe.
+	    portfolio_site = models.URLField(blank=true)			//user na dileo prblm nai
+	    profile_image = models.ImageField(upload_to='Login/profile_pictures',blank=True)
+	    
+	    def __str__(self):
+        	return self.user.username					user er moddhe j default username attribute ta ache ta return korbe
+
+ImageField niye kaj korte pillow library kora thakte hobe ->
+pip install pillow
+
+Then create templates pages, write codes and connects them with urls files.
