@@ -1,0 +1,28 @@
+Git vs GitHub
+
+Git - is a version control system that helps keep track of changes in your code 
+      totally free version control system
+
+
+
+
+
+
+
+
+GitHub - is a company and website that helps manage git and hosts your files on their site
+	 it allows you to easily use git for version control and keep hosted copies
+	 of your code on the web.
+
+Uploading a directory to a github repository ->
+	create an account on github. Install git. 
+	cd directory_name
+	git init
+	git add .		//means add everything
+	git commit . -m 'first'		//message
+	git remote add origin https://github.com/mdimtiaz501/repository_name.git
+	git push -u origin master
+
+
+
+

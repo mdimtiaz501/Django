@@ -1,0 +1,63 @@
+pythonanywhere.com
+create an beginner account 
+
+Consoles tab - allows you to create and interact with python and console instances
+Files - upload and interact files
+Web - allows you to configure settings for your host web applications
+Schedule - allows you to setup task to be excuted in particular times
+Databases - configre a mysql database
+
+Consoles > Bash >
+	mkvirtualenv --python=python3.8 myproj 		//creating virtual environment
+	pip list		//list of installed packages
+	pip install -U django=(version)
+	which django-admin.py		//confirming django installed
+	git clone (github uploaded project link)
+	cd project_name
+	python manage.py migrate
+	python manage.py makemigrations Login
+	python manage.py createsuperuser
+	
+	ready to setup web app.
+	Dashboard > Web >
+	    Manual configuration, python version, copy the link.
+	    Virtualenv:
+		enter a path.
+		/home/link/.virtualenvs/projname
+		Start a console in this virtualenv
+		cd directory_name
+		cd projname
+		copy the whole project directory name
+	    Code:
+		Source code, enter the cource code
+		WSGI configuration file: click on the link
+		    delete 13 to 47 line codes.
+		    comment out - 42,43,47(path- change mysite to repository/project name)
+		    comment out - 48,49,60,61
+		    os.chdir(path)
+		    os.environ.setdefault("DJANGO_SETTINGS_MODULE","settingsPath") ex. UserReg.settings
+		    import django
+		    django.setup()
+
+Now the website with work but admin page won't get any style.
+Web > Static files >
+	2ta static file connect korte hobe. Amader project er + administration panel er.
+		    Admin static - /static/admin   /home/websiteusername/.virtualenvs/projname/lib/pythonversion/site-packages/django/contrib/admin/static/admin
+		    ReLoad WebApp
+		    Goto Files > our project settings.py file ->
+			ALLOWED_HOSTS = ['linkusername.pythonanywhere.com']
+			DEBUT = False		//this will so not found for a not existing page
+		    Web ->
+			Reload. Now Administration mode gets static files.
+		    Our Static File - /static/     /home/websiteusename/repositoryname/projname/static
+		    
+
+
+	    
+
+
+
+
+
+	
+	
