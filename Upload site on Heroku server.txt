@@ -1,0 +1,40 @@
+We need git, heroku to be installed.
+git-scm.com/downlaods
+www.heroku.com - ekhane account khulte hobe
+https://devcenter.heroku.com/articles/heroku-cli - heroku'r cli install korte hobe
+
+git --version
+heroku --version 
+
+heroku login 		//herokur email pass diye login korte hobe
+
+project er root directory:-
+
+git init
+git status
+git add -A
+git commit -m "write anything"
+
+create a file named Procfile in the main directory 
+Procfile ->
+	web: gunicorn Project_name.wsgi --log-file -
+	(amra normally python er personal server e project run kori. but professional kaje amra
+	gunicorn server use korbo, heroku ke bole diyechi web server hisebe gunicorn use korba)
+
+pipenv install gunicorn
+
+settings.py ->
+ALLOWE_HOSTS = ['*']		//jokhn kono domaine rakhbo tokhn oi domain er link ta diye dibo.* mane j kono domain ei kaj korbe
+
+heroku create 'app_name'  	//app name na likhle heroku randomly akta name generate korbe. nam unique hote hobe
+heroku git:remote  -a app_name
+heroku config:set DISABLE_COLLECTSTATIC=1	//heroku ke bole disi project e kono static file nai
+
+git status		//check korbo kono file update kora lagbe kina
+jodi add kora lage-:
+git add -A
+git commit -m "file_name created"
+push heroku master		//project ta server e push hobe
+heroku ps:scale web=1		//server ta activate hobe
+
+app_name.herokuapp.com		//link e jeye access korbo
