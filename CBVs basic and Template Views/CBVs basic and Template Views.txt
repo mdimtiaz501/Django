@@ -1,0 +1,48 @@
+Class Based Views
+------------------
+
+Previously we've created views using functions, however Django provides really powerful tools to use OOP
+and classes to define views.
+
+
+Printing Hello World Using Class Based Views
+------------------------------
+
+atodin amra function based views create korechi akhn amra function er jaygai class use korbo. It's easier.
+
+views.py ->
+	class CBView(View):
+		return HttpResponse("Hello world from CBV")
+
+urls.py ->
+	url(r'^$',views.CBView.as_view())
+
+
+Difference between Function based view and Class based template view
+	def index(request)
+		return render(request, index.html)
+
+	from django.views.generic import View, TemplateView
+	from django.http import HttpResponse
+
+	class CBView(View):
+    	        def get(self,request):
+        	return HttpResponse("Hello world")
+
+	class IndexView(TemplateView):
+		template_name = 'index.html'
+		
+		def get_context_data(self,**kwargs):		//**kwargs - argument gula dictionary hisebe nibe..mane key r value thakbe
+		    context = super().get_context_data(**kwargs)
+		    context['injection'] = 'Context goes to index.html page'
+		    return context
+
+
+
+
+
+
+
+
+
+
