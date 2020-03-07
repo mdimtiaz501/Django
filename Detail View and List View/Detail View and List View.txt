@@ -1,0 +1,64 @@
+models.py file e table gular model create korar por ta front end e show korte views.py file e class create korte hobe
+
+views.py ->
+	from django.http import HttpResponse
+	from django.views.generic import View,TemplateView,ListView,DetailView
+	from . import models
+	
+	class VarsityLView(ListView):		//ListView University model er shb gula record list akare show korabe
+    	    model = models.University		//show all the details of a specific entity of school model database
+
+
+HelloWorld > templates > HelloWorld > university_list.html ->
+	<ol>
+            {% for vv in university_list %}	//returns a list with the name univeristy_list
+						//University namer j model create korechi, oi namer lowercase
+						character gular sathe _list add kore oitar moddhe data gula context dictionary akare rakhbe
+            <h3><li>{{vv.name}}</li></h3>	//University model er name field theke nam gula niye ashbe
+            {% endfor %}
+    	</ol>
+
+
+views.py ->
+	class VarsityLView(ListView):
+   	    model = models.University
+	    context_object_name = 'varsities'		//akhn {% for university varsities %} likhte hobe. default context ta change korechi
+
+	//ListView model er context class er nam lowercase er sathe _list add kore r DetailView sudhu class er nam lowercase set kore rakhe.
+
+
+Amra kono primary key set kori nai. jodi 2jn student er information save hoy bt 2ta varsity'r nam same hoy tahole conflict
+create hoar ktha. bt ta hoy na karon amra default vabe kono primary key set na korle django default vabe akta id set kore.
+
+HelloWorld > templates > HelloWorld > university_list.html ->
+        {% for vv in university_list %}
+            <h3><li><a href="{{vv.id}}">{{vv.name}}</a></li></h3>	//built-in id'r maddhome access korbo
+        {% endfor %}
+
+HelloWorld > templates > HelloWorld > university_detail.html ->
+
+	{% for ss in student.stdnts.all %}	//'student' detail view er related_name stdnts hoar karone Student class er shb info niye ashe
+            <p>{{ss.name}} is {{ss.age}} years old</p>	//.all grabs anything of the matching foreign key
+    	{% endfor %}
+
+
+models.py ->
+	class Student(models.Model):
+    	    name = models.CharField(max_length=256)
+    	    age = models.PositiveIntegerField()
+    	    Department = models.ForeignKey(University,on_delete=models.PROTECT,related_name='stdnt')
+	    //related_name ta University'r sathe Student er moddhe relation create kore
+	    //related_name connecting the foreign key with Department so that the Department can be linked to all of the students that belong to that department.
+
+HelloWorld > urls.py ->
+	url(r'^(?P<pk>[-\w]+)/$',views.VarsityDView.as_view(),name='details')
+	//jokhn kew university_list page er university'r name e click korbe, link ta actually akta number return korbe, jeta primary key. pk
+	
+
+related_name -> j foreign key ta related key hisebe set korbo, oi foreign key er under e(university name) jotogula student thakbe sudhu tai show korabe
+
+university_list - page e university'r nam gula show korbe {{vv.name}} er maddhome
+{{vv.id}} link e click korle university_detail page ta show korbe, j university'r link e click korbo oi varsity'r info show korbe, r
+sudhu oi varsity'r student info show korbe related_name er maddhome, related_name University'r name er maddhome dui class er sathe connected.
+
+
