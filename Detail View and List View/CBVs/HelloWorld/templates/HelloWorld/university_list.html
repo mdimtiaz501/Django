@@ -1,0 +1,15 @@
+{% extends 'HelloWorld/base.html' %}
+
+{% block body_block %}
+
+    <h1>List of Universities</h1>
+
+    <ol>
+        {% for vv in university_list %}
+        <h3><li><a href="{{vv.id}}">{{vv.name}}</a></li></h3>
+        {% endfor %}
+    </ol>
+
+
+{% endblock %}
+
