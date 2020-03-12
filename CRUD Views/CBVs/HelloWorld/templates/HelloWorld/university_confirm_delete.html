@@ -1,0 +1,14 @@
+{% extends 'HelloWorld/base.html' %}
+
+{% block body_block %}
+
+<h1>Delete {{university.name}}?</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <input value="Submit" class="btn btn-primary" type="submit">
+    <a href="{% url 'HelloWorld:detail' pk=university.pk %}">Cancel</a>
+</form>
+
+
+{% endblock %}
