@@ -1,0 +1,88 @@
+Create Retrive Update Delete
+------------------------------
+
+Creating a new University using create view ->
+
+	views.py ->
+	    from django.views.generic import (View,TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView)
+	    class CreateUniversity(CreateView):
+    	        model = models.University
+	urls.py ->
+	    url(r'^(?P<pk>\d+)/$',views.VarsityDView.as_view(),name='detail'),
+	    url(r'^create/$',views.CreateUniversity.as_view(),name='create')
+
+    akhon /HelloWorld/create page ta browse korle ImproperlyConfigured error show korbe karon amra bole dei nai kon
+    field gula prohibited r kon field gula allowed.
+	
+        views.py ->
+	    class CreateUniversity(CreateView):
+    	        fields = ('name','Faculty','Department')
+    	        model = models.University
+
+    permission dileo arekta error show korbe..coz amra 'create' page er jnno amara kono template banai nai. django'r
+    pre-built template user korar jnno modelname_form.html namer template page create korte hobe.
+
+    	university_form.html ->
+	    {% if not form.instance.pk  %}		//check korbe primary key er instance exist kore ki na. exist na korle
+                Create University			//Create University lekha show korbe.
+            {% else %}
+                Update University
+            {% endif %}
+
+    form submit korar por ta kothay redirect hobe ta set korar jnno get_absolute_url(self) method use korte hobe.
+	
+	models.py ->
+	    from django.core.urlresolvers import reverse
+	    class University(models.Model):
+	        def get_absolute_url(self):
+        	    return reverse("HelloWorld:detail",kwargs={'pk':self.pk})
+
+    project's urls.py ->
+	url(r'^HelloWorld/',include('HelloWorld.urls',namespace='Hello_World'))
+
+    namespace = app_name er motoi kaj kore. url link ta kon app er ta bujhar jnno use kora hoy. namespace use korte app_name o use korte hobe.
+
+
+Updating a University ->
+
+    views.py ->
+	class UpdateUniversity(UpdateView):
+    	    fields = ('Faculty','Department')
+    	    model = models.University
+	
+    urls.py ->
+	url(r'^update/(?P<pk>\d+)/$',views.VarsityUView.as_view(),name='update'),
+	//if I go to HelloWorld/update/(primary key of university)
+
+    Univeristy class er field gula update korar option detail page e thakbe. update button e click korle field gula update korar jnno bolbe.
+	
+    university_detail.py ->
+	<div class="container">
+            <h2><a class="btn btn-success" href="{% url 'HelloWorld:update' pk=university.pk %}">Update</a></h2>
+    	</div>		//link diye j university'r field update korbo ta update korar permission dibe
+
+
+Deleting an existing university ->
+
+    views.py ->
+	from django.urls import reverse_lazy
+	class DeleteUniversity(DeleteView):
+    	    model = models.University
+    	    success_url = reverse_lazy('HelloWorld:listV')	//success_url returns to back list page after deleting a university
+								//and there'll be no longer available the list we've deleted
+	//reverse_lazy use korar karon hocche kono university delete korar somoy successfully delete hoar age porjonto amra wait korbo.
+	//delete hoar por university list show korbe. eta use na korle university delete korle oi page ta r thaktesena, tai page
+	//redirect hoar age porjonto jodi wait na kori tokhn delete hoar age porjont existing page e thakte parbe na tai error show korbe.
+
+    create a page named university_confirm_delete.html ->	//jokhn kew manually database theke delete korte chaibe
+	<form method="POST">
+    	    {% csrf_token %}
+    	    <input value="Submit" class="btn btn-primary" type="submit">
+    	    <a href="{% url 'HelloWorld:detail' pk=university.pk %}">Cancel</a>
+	</form>    
+
+
+
+
+
+
