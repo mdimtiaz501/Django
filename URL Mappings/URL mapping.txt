@@ -14,7 +14,7 @@ create a file named urls.py in the FirstProject app and if we write the code
 		url(r'^$',views.index,name='index'),	name is the file name inside the app from which contents will be shown
 	]
 
-Then it'll print Hello boys
+Then it'll print Hello buddies
 
 	urlpatterns = [
 		url(r'^$',views.index,name='index'),	//^$ diye bujhay domain page er link 
