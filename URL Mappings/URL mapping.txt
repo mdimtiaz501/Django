@@ -11,7 +11,7 @@ create a file named urls.py in the FirstProject app and if we write the code
 	from django.conf.urls import url
 	from django.conf.urls import include
 	urlpatterns = [
-		url(r'^$',views.index,name='index'),
+		url(r'^$',views.index,name='index'),	name is the file name inside the app from which contents will be shown
 	]
 
 Then it'll print Hello boys
